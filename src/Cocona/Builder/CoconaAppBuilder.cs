@@ -40,13 +40,14 @@ public class CoconaAppBuilder
                 app.AddCommand(commandData);
             }
         });
+        
         var (hostBuilderContext, hostConfiguration) = bootstrapHostBuilder.Apply(Configuration, _hostBuilder);
 
         _configureHostBuilder = new ConfigureHostBuilder(hostBuilderContext, Configuration, Services);
         Environment = hostBuilderContext.HostingEnvironment;
         Logging = new LoggingBuilder(_services);
 
-        _services.AddSingleton<IConfiguration>(sp => Configuration);
+        _services.AddSingleton<IConfiguration>(Configuration);
     }
 
     public CoconaApp Build()

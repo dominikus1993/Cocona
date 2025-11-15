@@ -4,6 +4,4 @@ namespace Cocona;
 /// Specifies that the command should ignore unknown options.
 /// </summary>
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
-public class IgnoreUnknownOptionsAttribute : Attribute
-{
-}
+public class IgnoreUnknownOptionsAttribute : Attribute;

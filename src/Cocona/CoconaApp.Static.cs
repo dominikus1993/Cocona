@@ -35,7 +35,7 @@ public partial class CoconaApp
     /// <param name="configureOptions"></param>
     /// <returns></returns>
     public static void Run<T>(string[]? args = null, Action<CoconaAppOptions>? configureOptions = null)
-        => Run(args, new[] { typeof(T) }, configureOptions);
+        => Run(args, [typeof(T)], configureOptions);
 
     /// <summary>
     /// Starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.
@@ -46,7 +46,7 @@ public partial class CoconaApp
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static Task RunAsync<T>(string[]? args = null, Action<CoconaAppOptions>? configureOptions = null, CancellationToken cancellationToken = default)
-        => RunAsync(args, new[] { typeof(T) }, configureOptions, cancellationToken);
+        => RunAsync(args, [typeof(T)], configureOptions, cancellationToken);
 
     /// <summary>
     /// Starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.

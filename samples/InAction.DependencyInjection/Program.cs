@@ -20,7 +20,7 @@ class Program
             })
             .ConfigureServices(services =>
             {
-                services.AddTransient<MyService>();
+                services.AddScoped<MyService>();
             })
             .Run<Program>(args);
     }
