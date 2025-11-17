@@ -4,7 +4,7 @@ namespace Cocona;
 /// Specifies that a method of the command is forwarded to another method.
 /// </summary>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
-public class CommandMethodForwardedToAttribute : Attribute
+public sealed class CommandMethodForwardedToAttribute : Attribute
 {
     public Type CommandType { get; }
     public string CommandMethodName { get; }

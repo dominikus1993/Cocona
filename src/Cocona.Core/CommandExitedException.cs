@@ -3,7 +3,7 @@ namespace Cocona;
 /// <summary>
 /// The exception that thrown when a command exited immediately.
 /// </summary>
-public class CommandExitedException : Exception
+public sealed class CommandExitedException : Exception
 {
     /// <summary>
     /// Gets a exit code of the current command.

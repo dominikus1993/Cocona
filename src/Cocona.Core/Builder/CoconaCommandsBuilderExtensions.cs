@@ -6,7 +6,7 @@ namespace Cocona;
 
 public static class CoconaCommandsBuilderExtensions
 {
-    internal static IList<object> GetFilters(this ICoconaCommandsBuilder builder)
+    private static IList<object> GetFilters(this ICoconaCommandsBuilder builder)
     {
         if (!builder.Properties.TryGetValue(CoconaCommandsBuilder.PropertyKeyFilters, out var filters) || filters is not IList<object> filtersTyped)
         {
@@ -144,7 +144,7 @@ public static class CoconaCommandsBuilderExtensions
         ThrowHelper.ThrowIfNull(commandType);
 
         var conventions = new List<Action<ICommandBuilder>>();
-        builder.Add(new TypeCommandDataSource(commandType, conventions, builder.GetFilters().ToArray()));
+        builder.Add(new TypeCommandDataSource(commandType, conventions, builder.GetFilters()));
 
         return new CommandTypeConventionBuilder(conventions);
     }
