@@ -144,7 +144,7 @@ public static class CoconaCommandsBuilderExtensions
         ThrowHelper.ThrowIfNull(commandType);
 
         var conventions = new List<Action<ICommandBuilder>>();
-        builder.Add(new TypeCommandDataSource(commandType, conventions, builder.GetFilters()));
+        builder.Add(new TypeCommandDataSource(commandType, conventions, builder.GetFilters().ToArray()));
 
         return new CommandTypeConventionBuilder(conventions);
     }
