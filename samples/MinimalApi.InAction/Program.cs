@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 var builder = CoconaApp.CreateBuilder();
-builder.Services.AddSingleton<MyService>(new MyService("Karen"));
+builder.Services.AddScoped<MyService>(_ => new MyService("Karen"));
 builder.Configuration.AddJsonFile("appsettings.custom.json", optional: true);
 
 var app = builder.Build();

@@ -69,7 +69,7 @@ internal class BootstrapHostBuilder : IHostBuilder
     }
 
     // https://github.com/dotnet/runtime/blob/312c66f1fc2f749f56612999cb1adab9ca7fde59/src/libraries/Microsoft.Extensions.Hosting/src/HostBuilder.cs#L198
-    private string ResolveContentRootPath(string contentRootPath, string basePath)
+    private static string ResolveContentRootPath(string contentRootPath, string basePath)
     {
         if (string.IsNullOrEmpty(contentRootPath))
         {

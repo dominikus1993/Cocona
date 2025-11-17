@@ -34,9 +34,9 @@ public class Benchmark
     public async ValueTask<int> ExecuteWithCliFx() =>
         await new CliApplicationBuilder().AddCommand(typeof(CliFxCommand)).Build().RunAsync(Arguments);
 
-    [Benchmark(Description = "System.CommandLine")]
-    public async Task<int> ExecuteWithSystemCommandLine() =>
-        await new SystemCommandLineCommand().ExecuteAsync(Arguments);
+    // [Benchmark(Description = "System.CommandLine")]
+    // public async Task<int> ExecuteWithSystemCommandLine() =>
+    //     await new SystemCommandLineCommand().ExecuteAsync(Arguments);
 
     [Benchmark(Description = "McMaster.Extensions.CommandLineUtils")]
     public int ExecuteWithMcMaster() =>

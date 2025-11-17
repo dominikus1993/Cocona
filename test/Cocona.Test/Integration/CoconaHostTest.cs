@@ -74,7 +74,7 @@ public class CoconaHostTest : EndToEndTestBase
             TestConfigurationSource? source = default;
             builder.Configuration.Add<TestConfigurationSource>(x => { source = x; });
             {
-                var app = builder.Build();
+                using var app = builder.Build();
                 app.AddCommand(() => { });
                 app.Run();
             }

@@ -16,7 +16,7 @@ public class DelegateCommandData : ICommandData
     }
 }
 
-public class DelegateCommandDataSource : ICommandDataSource
+public sealed class DelegateCommandDataSource : ICommandDataSource
 {
     private readonly Delegate _delegate;
     private readonly IReadOnlyList<Action<ICommandBuilder>> _conventions;
@@ -51,7 +51,7 @@ public class DelegateCommandDataSource : ICommandDataSource
         return builder.Build();
     }
 
-    class CommandBuilder : ICommandBuilder
+    sealed class CommandBuilder : ICommandBuilder
     {
         public MethodInfo Method { get; }
         public object? Target { get; }
