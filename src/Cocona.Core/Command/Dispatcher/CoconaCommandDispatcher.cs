@@ -37,14 +37,8 @@ public class CoconaCommandDispatcher : ICoconaCommandDispatcher
             var subCommandStack = commandResolverResult.SubCommandStack!;
 
             var dispatchAsync = _dispatcherPipelineBuilder.Build();
-
-#if NET5_0_OR_GREATER || NETSTANDARD2_1
             var (scope, serviceProvider) = _serviceProviderScopeSupport.CreateAsyncScope(_serviceProvider);
             await using (scope)
-#else
-                var (scope, serviceProvider) = _serviceProviderScopeSupport.CreateScope(_serviceProvider);
-                using (scope)
-#endif
             {
 
                 // Activate a command type.
@@ -54,7 +48,7 @@ public class CoconaCommandDispatcher : ICoconaCommandDispatcher
                 {
                     commandInstance = matchedCommand.Target;
                 }
-                else if (matchedCommand.CommandType.GetConstructors().Any() && !matchedCommand.Method.IsStatic)
+                else if (matchedCommand.CommandType.GetConstructors() is {Length: > 0} && !matchedCommand.Method.IsStatic)
                 {
                     shouldCleanup = true;
                     commandInstance = _activator.GetServiceOrCreateInstance(serviceProvider, matchedCommand.CommandType);
@@ -77,11 +71,9 @@ public class CoconaCommandDispatcher : ICoconaCommandDispatcher
                     {
                         switch (commandInstance)
                         {
-#if NET5_0_OR_GREATER || NETSTANDARD2_1
                             case IAsyncDisposable asyncDisposable:
                                 await asyncDisposable.DisposeAsync().ConfigureAwait(false);
                                 break;
-#endif
                             case IDisposable disposable:
                                 disposable.Dispose();
                                 break;

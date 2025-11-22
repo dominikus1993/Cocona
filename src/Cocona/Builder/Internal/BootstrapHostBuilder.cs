@@ -27,10 +27,10 @@ internal class BootstrapHostBuilder : IHostBuilder
         throw new InvalidOperationException();
     }
 
-    public (HostBuilderContext HostBuilderContext, ConfigurationManager HostConfiguration) Apply(ConfigurationManager configuration, HostBuilder hostBuilder)
+    public (HostBuilderContext HostBuilderContext, ConfigurationManager HostConfiguration) Apply(ConfigurationManager configuration, IHostBuilder hostBuilder)
     {
         // Use default services/configurations for HostBuilder
-        this.ConfigureDefaults(Array.Empty<string>());
+        this.ConfigureDefaults([]);
 
         var hostConfiguration = new ConfigurationManager();
 

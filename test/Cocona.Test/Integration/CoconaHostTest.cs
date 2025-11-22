@@ -103,7 +103,7 @@ public class CoconaHostTest : EndToEndTestBase
         public IConfigurationProvider Build(IConfigurationBuilder builder)
             => new ConfigurationProvider(this);
 
-        class ConfigurationProvider : IConfigurationProvider, IDisposable
+        private sealed class ConfigurationProvider : IConfigurationProvider, IDisposable
         {
             private readonly TestConfigurationSource _source;
 
