@@ -66,17 +66,18 @@ public class CoconaHostTest : EndToEndTestBase
     }
 
     [Fact]
-    public void CoconaApp_Run_DisposeHost()
+    public async Task CoconaApp_Run_DisposeHost()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+        var (stdOut, stdErr, exitCode) = await RunAsync(new string[] { }, async args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             TestConfigurationSource? source = default;
             builder.Configuration.Add<TestConfigurationSource>(x => { source = x; });
+            
             {
                 using var app = builder.Build();
                 app.AddCommand(() => { });
-                app.Run();
+                await app.RunAsync();
             }
 
             (source?.IsProviderDisposed).Should().BeTrue();

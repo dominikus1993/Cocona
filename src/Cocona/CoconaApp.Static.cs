@@ -5,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Cocona;
 
-public partial class CoconaApp
+public sealed partial class CoconaApp
 {
     /// <summary>
     /// Creates an instance of <see cref="CoconaAppHostBuilder"/>.
