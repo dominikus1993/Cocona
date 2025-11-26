@@ -11,6 +11,6 @@ class Program
     static void Main(string[] args)
     {
         BenchmarkRunner.Run(typeof(Program).Assembly,
-            DefaultConfig.Instance.With(ConfigOptions.DisableOptimizationsValidator));
+            DefaultConfig.Instance.WithOptions(ConfigOptions.DisableOptimizationsValidator));
     }
 }
