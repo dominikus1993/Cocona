@@ -7,7 +7,7 @@ public static class OptionLikeCommandsBuilderExtensions
 {
     public static CommandConventionBuilder Add(this IOptionLikeCommandsBuilder builder, string name, Delegate commandBody)
     {
-        return builder.Add(name, Array.Empty<char>(), commandBody);
+        return builder.Add(name, [], commandBody);
     }
 
     public static CommandConventionBuilder Add(this IOptionLikeCommandsBuilder builder, string name, IReadOnlyList<char>? shortNames, Delegate commandBody)
