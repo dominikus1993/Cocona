@@ -175,7 +175,7 @@ public class DispatcherTest
     [Fact]
     public async Task CommandNotFound_Multiple_Primary_Resolver()
     {
-        var services = CreateDefaultServices<TestMultipleCommand>(new string[] { });
+        var services = CreateDefaultServices<TestMultipleCommand>(Array.Empty<string>());
         var serviceProvider = services.BuildServiceProvider();
 
         var dispatcher = serviceProvider.GetService<ICoconaCommandDispatcher>();
@@ -379,7 +379,7 @@ public class DispatcherTest
     [Fact]
     public async Task CommandInstance_Dispose_After_Dispatch()
     {
-        var services = CreateDefaultServices<TestCommand_Dispose_After_Dispatch>(new string[] { });
+        var services = CreateDefaultServices<TestCommand_Dispose_After_Dispatch>(Array.Empty<string>());
         services.AddSingleton<DisposeCounter>();
         var serviceProvider = services.BuildServiceProvider();
 
@@ -423,7 +423,7 @@ public class DispatcherTest
     [Fact]
     public async Task CommandInstance_DisposeAsync_After_Dispatch()
     {
-        var services = CreateDefaultServices<TestCommand_DisposeAsync_After_Dispatch>(new string[] { });
+        var services = CreateDefaultServices<TestCommand_DisposeAsync_After_Dispatch>(Array.Empty<string>());
         services.AddSingleton<DisposeCounter>();
         var serviceProvider = services.BuildServiceProvider();
 
@@ -465,7 +465,7 @@ public class DispatcherTest
     [Fact]
     public async Task ServiceProvider_Scoped()
     {
-        var services = CreateDefaultServices<TestCommand_ServiceProvider_Scoped>(new string[] { });
+        var services = CreateDefaultServices<TestCommand_ServiceProvider_Scoped>(Array.Empty<string>());
         services.AddSingleton<DisposeCounter>();
         services.AddScoped<TestService_ServiceProvider_Scoped>();
         var serviceProvider = services.BuildServiceProvider();

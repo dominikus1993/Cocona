@@ -160,7 +160,7 @@ Options:
         var commandDescriptor = CreateCommand(
             "Test",
             "",
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             CommandFlags.Primary
         );
 
@@ -399,7 +399,7 @@ Options:
         var commandDescriptor2 = CreateCommand(
             "Test2",
             "command2 description",
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             CommandFlags.None
         );
 
@@ -439,7 +439,7 @@ Options:
         var commandDescriptor2 = CreateCommand(
             "Test2",
             "command2 description",
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             CommandFlags.None
         );
 
@@ -469,13 +469,13 @@ Options:
         var commandDescriptor = CreateCommand(
             "Test",
             "command description",
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             CommandFlags.Primary
         );
         var commandDescriptor2 = CreateCommand(
             "Test2",
             "command2 description",
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             CommandFlags.None
         );
 
@@ -498,13 +498,13 @@ Commands:
         var commandDescriptor = CreateCommand(
             "Test",
             "command description",
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             CommandFlags.Hidden
         );
         var commandDescriptor2 = CreateCommand(
             "Test2",
             "command2 description",
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             CommandFlags.None
         );
 

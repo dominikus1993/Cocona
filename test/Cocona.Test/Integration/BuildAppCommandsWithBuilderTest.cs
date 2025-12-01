@@ -9,7 +9,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     [Fact]
     public void Unnamed_SingleCommand()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+        var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             var app = builder.Build();
@@ -26,7 +26,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     {
         Assert.Throws<CoconaException>(() =>
         {
-            var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+            var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
             {
                 var builder = CoconaApp.CreateBuilder(args);
                 var app = builder.Build();
@@ -40,7 +40,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     [Fact]
     public void Named_SingleCommand_Index()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+        var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             var app = builder.Build();
@@ -71,7 +71,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     [Fact]
     public void MultipleCommand_Index()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+        var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             var app = builder.Build();
@@ -182,7 +182,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     [Fact]
     public void Unnamed_OptionLikeCommand()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+        var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             var app = builder.Build();
@@ -233,7 +233,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     public void Parameter_NotNull_Or_Unknown_Required_RefType()
     {
         {
-            var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+            var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
             {
                 var app = CoconaApp.Create(args);
                 app.AddCommand((string name) => Console.WriteLine($"Hello {name}!")); // [NotNull]
@@ -245,7 +245,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
         }
 #nullable disable
         {
-            var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+            var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
             {
                 var app = CoconaApp.Create(args);
                 app.AddCommand((string name) => Console.WriteLine($"Hello {name}!")); // [Unknown]
@@ -262,7 +262,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     public void Parameter_Nullable_Optional_RefType()
     {
         {
-            var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+            var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
             {
                 var app = CoconaApp.Create(args);
                 app.AddCommand((string? name) => Console.WriteLine($"Hello {(name ?? "Guest")}!"));
@@ -291,7 +291,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     public void Parameter_Nullable_Optional_ValueType()
     {
         {
-            var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+            var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
             {
                 var app = CoconaApp.Create(args);
                 app.AddCommand((int? year) => Console.WriteLine($"Hello {(year ?? 2022)}!"));
@@ -320,7 +320,7 @@ public class BuildAppCommandsWithBuilderTest : EndToEndTestBase
     public void Parameter_Nullable_Optional_Boolean()
     {
         {
-            var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+            var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
             {
                 var app = CoconaApp.Create(args);
                 app.AddCommand((bool? flag) => Console.WriteLine($"Flag: {(flag.HasValue ? flag.Value : "(null)")}"));

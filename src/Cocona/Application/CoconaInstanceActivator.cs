@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Cocona.Application;
 
-public class CoconaInstanceActivator : ICoconaInstanceActivator
+public sealed class CoconaInstanceActivator : ICoconaInstanceActivator
 {
     public object? GetServiceOrCreateInstance(IServiceProvider serviceProvider, Type instanceType)
     {

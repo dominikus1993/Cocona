@@ -10,7 +10,7 @@ public class CoconaHostTest : EndToEndTestBase
     [Fact]
     public void CoconaApp_Run_DisposeServices()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+        var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
         {
             var service = new DisposeService();
 
@@ -29,7 +29,7 @@ public class CoconaHostTest : EndToEndTestBase
     [Fact]
     public void CoconaApp_Run_DisposeServicesAsync()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+        var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
         {
             var service = new DisposeServiceAsync();
 
@@ -68,7 +68,7 @@ public class CoconaHostTest : EndToEndTestBase
     [Fact]
     public async Task CoconaApp_Run_DisposeHost()
     {
-        var (stdOut, stdErr, exitCode) = await RunAsync(new string[] { }, async args =>
+        var (stdOut, stdErr, exitCode) = await RunAsync(Array.Empty<string>(), async args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             TestConfigurationSource? source = default;
@@ -83,7 +83,7 @@ public class CoconaHostTest : EndToEndTestBase
             (source?.IsProviderDisposed).Should().BeTrue();
         });
 
-        Run(new string[] { }, args =>
+        Run(Array.Empty<string>(), args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             TestConfigurationSource? source = default;

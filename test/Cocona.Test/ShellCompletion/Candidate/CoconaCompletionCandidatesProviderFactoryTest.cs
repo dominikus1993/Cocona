@@ -23,7 +23,7 @@ public class CoconaCompletionCandidatesProviderFactoryTest
             CoconaDefaultValue.None,
             string.Empty,
             CommandOptionFlags.None,
-            new Attribute[] { }
+            Array.Empty<Attribute>()
         );
         var factory = new CoconaCompletionCandidatesProviderFactory(serviceProvider, activator);
         var metadata = new CoconaCompletionCandidatesMetadata(
@@ -49,7 +49,7 @@ public class CoconaCompletionCandidatesProviderFactoryTest
             CoconaDefaultValue.None,
             string.Empty,
             CommandOptionFlags.None,
-            new Attribute[] { }
+            Array.Empty<Attribute>()
         );
         var factory = new CoconaCompletionCandidatesProviderFactory(serviceProvider, activator);
         var metadata = new CoconaCompletionCandidatesMetadata(

@@ -17,7 +17,7 @@ public class CoconaAppRunTest : EndToEndTestBase
     [InlineData(RunBuilderMode.Shortcut)]
     public void CoconaApp_Run_Single(RunBuilderMode mode)
     {
-        var (stdOut, stdErr, exitCode) = Run<TestCommand_Single>(mode, new string[] { });
+        var (stdOut, stdErr, exitCode) = Run<TestCommand_Single>(mode, Array.Empty<string>());
 
         stdOut.Should().Be("Hello Konnichiwa!" + Environment.NewLine);
         exitCode.Should().Be(0);
@@ -127,7 +127,7 @@ public class CoconaAppRunTest : EndToEndTestBase
     [InlineData(RunBuilderMode.Shortcut)]
     public void CoconaApp_Run_Single_NotPrimary_Index(RunBuilderMode mode)
     {
-        var (stdOut, stdErr, exitCode) = Run<TestCommand_Single_NotPrimary>(mode, new string[] { });
+        var (stdOut, stdErr, exitCode) = Run<TestCommand_Single_NotPrimary>(mode, Array.Empty<string>());
 
         stdOut.Should().Contain("Usage:");
         stdOut.Should().Contain("Commands:");
@@ -164,7 +164,7 @@ public class CoconaAppRunTest : EndToEndTestBase
     [InlineData(RunBuilderMode.Shortcut)]
     public void CoconaApp_Run_Single_Primary(RunBuilderMode mode)
     {
-        var (stdOut, stdErr, exitCode) = Run<TestCommand_Single_Primary>(mode, new string[] { });
+        var (stdOut, stdErr, exitCode) = Run<TestCommand_Single_Primary>(mode, Array.Empty<string>());
 
         stdOut.Should().Be("Hello Konnichiwa!" + Environment.NewLine);
         exitCode.Should().Be(0);
@@ -211,7 +211,7 @@ public class CoconaAppRunTest : EndToEndTestBase
     [InlineData(RunBuilderMode.Shortcut)]
     public void CoconaApp_Run_Multiple_Index(RunBuilderMode mode)
     {
-        var (stdOut, stdErr, exitCode) = Run<TestCommand_Multiple>(mode, new string[] { });
+        var (stdOut, stdErr, exitCode) = Run<TestCommand_Multiple>(mode, Array.Empty<string>());
 
         stdOut.Should().Contain("Usage:");
         stdOut.Should().Contain("Commands:");
@@ -319,7 +319,7 @@ public class CoconaAppRunTest : EndToEndTestBase
     [InlineData(RunBuilderMode.Shortcut)]
     public void CoconaApp_Run_MultipleClass(RunBuilderMode mode)
     {
-        var (stdOut, stdErr, exitCode) = Run(mode, new string[] { }, new [] { typeof(TestCommand_Multiple), typeof(TestCommand2) });
+        var (stdOut, stdErr, exitCode) = Run(mode, Array.Empty<string>(), new [] { typeof(TestCommand_Multiple), typeof(TestCommand2) });
 
         stdOut.Should().Contain("exit-code");
         stdOut.Should().Contain("foo-bar");
@@ -553,7 +553,7 @@ public class CoconaAppRunTest : EndToEndTestBase
     [InlineData(RunBuilderMode.Shortcut)]
     public void CoconaApp_Run_Nested_Index_0(RunBuilderMode mode)
     {
-        var (stdOut, stdErr, exitCode) = Run<TestCommand_Nested>(mode, new string[] { });
+        var (stdOut, stdErr, exitCode) = Run<TestCommand_Nested>(mode, Array.Empty<string>());
 
         stdOut.Should().Contain("Usage:");
         stdOut.Should().Contain("Commands:");
@@ -756,7 +756,7 @@ public class CoconaAppRunTest : EndToEndTestBase
     {
         Assert.Throws<CoconaException>(() =>
         {
-            var (stdOut, stdErr, exitCode) = Run<TestCommand_ThrowOnBuild>(mode, new string[] { });
+            var (stdOut, stdErr, exitCode) = Run<TestCommand_ThrowOnBuild>(mode, Array.Empty<string>());
         });
     }
 

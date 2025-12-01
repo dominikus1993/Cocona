@@ -14,7 +14,7 @@ public class CoconaCommandLineParserTest
     [Fact]
     public void TryGetCommandName_Empty()
     {
-        var args = new string[] { };
+        var args = Array.Empty<string>();
         var result = new CoconaCommandLineParser().TryGetCommandName(args, out var commandName);
         result.Should().BeFalse();
         commandName.Should().BeNull();
@@ -53,7 +53,7 @@ public class CoconaCommandLineParserTest
         var args = new[] { "src1", "src2", "src3", "dest" };
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
-            new CommandOptionDescriptor[] { },
+            Array.Empty<CommandOptionDescriptor>(),
             new CommandArgumentDescriptor[]
             {
                 new CommandArgumentDescriptor(typeof(string[]), "src", 0, "", CoconaDefaultValue.None, Array.Empty<Attribute>()),
@@ -253,7 +253,7 @@ public class CoconaCommandLineParserTest
         var args = new[] { "--", "src1", "src2", "src3", "dest" };
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
-            new CommandOptionDescriptor[] { },
+            Array.Empty<CommandOptionDescriptor>(),
             new CommandArgumentDescriptor[]
             {
                 new CommandArgumentDescriptor(typeof(string[]), "src", 0, "", CoconaDefaultValue.None, Array.Empty<Attribute>()),
@@ -277,7 +277,7 @@ public class CoconaCommandLineParserTest
         var args = new[] { "src1", "src2", "src3", "dest", "--" };
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
-            new CommandOptionDescriptor[] { },
+            Array.Empty<CommandOptionDescriptor>(),
             new CommandArgumentDescriptor[]
             {
                 new CommandArgumentDescriptor(typeof(string[]), "src", 0, "", CoconaDefaultValue.None, Array.Empty<Attribute>()),
@@ -424,9 +424,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(string), "message", new [] { 'm' }, "", new CoconaDefaultValue(string.Empty)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -445,9 +443,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool), "flag", new [] { 'f' }, "", new CoconaDefaultValue(true)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -465,9 +461,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool), "flag", new [] { 'f' }, "", new CoconaDefaultValue(true)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -485,9 +479,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool), "flag", new [] { 'f' }, "", new CoconaDefaultValue(true)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -505,9 +497,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool), "flag", new [] { 'f' }, "", new CoconaDefaultValue(false)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -525,9 +515,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool), "flag", new [] { 'f' }, "", new CoconaDefaultValue(false)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -546,9 +534,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool), "flag", new [] { 'f' }, "", new CoconaDefaultValue(false)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -566,9 +552,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool?), "flag", new [] { 'f' }, "", new CoconaDefaultValue(null)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -586,9 +570,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool?), "flag", new [] { 'f' }, "", new CoconaDefaultValue(null)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -606,9 +588,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool?), "flag", new [] { 'f' }, "", new CoconaDefaultValue(null)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -626,9 +606,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool?), "flag", new [] { 'f' }, "", new CoconaDefaultValue(null)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -646,9 +624,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool?), "flag", new [] { 'f' }, "", new CoconaDefaultValue(null)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -666,9 +642,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(bool?), "flag", new [] { 'f' }, "", new CoconaDefaultValue(null)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -1094,12 +1068,8 @@ public class CoconaCommandLineParserTest
         var args = new[] { "--help" };
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
-            new CommandOptionDescriptor[]
-            {
-            },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandOptionDescriptor>(),
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().BeEmpty();
@@ -1114,12 +1084,8 @@ public class CoconaCommandLineParserTest
         var args = new[] { "--help", "--foo" };
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
-            new CommandOptionDescriptor[]
-            {
-            },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandOptionDescriptor>(),
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().BeEmpty();
@@ -1134,12 +1100,8 @@ public class CoconaCommandLineParserTest
         var args = new[] { "--foo=bar" };
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
-            new CommandOptionDescriptor[]
-            {
-            },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandOptionDescriptor>(),
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().BeEmpty();
@@ -1154,12 +1116,8 @@ public class CoconaCommandLineParserTest
         var args = new[] { "-h" };
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
-            new CommandOptionDescriptor[]
-            {
-            },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandOptionDescriptor>(),
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().BeEmpty();
@@ -1174,12 +1132,8 @@ public class CoconaCommandLineParserTest
         var args = new[] { "-h", "-f" };
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
-            new CommandOptionDescriptor[]
-            {
-            },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandOptionDescriptor>(),
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().BeEmpty();
@@ -1198,9 +1152,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(string), "message", new [] { 'm' }, "", new CoconaDefaultValue(string.Empty)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -1219,9 +1171,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(string), "message", new [] { 'm' }, "", new CoconaDefaultValue(string.Empty)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -1240,9 +1190,7 @@ public class CoconaCommandLineParserTest
             {
                 CreateCommandOption(typeof(string), "message", new [] { 'm' }, "", new CoconaDefaultValue(string.Empty)),
             },
-            new CommandArgumentDescriptor[]
-            {
-            }
+            Array.Empty<CommandArgumentDescriptor>()
         );
         parsed.Should().NotBeNull();
         parsed.Options.Should().HaveCount(1);
@@ -1483,7 +1431,7 @@ public class CoconaCommandLineParserTest
     [Fact]
     public void ParseCommand_OptionLikeCommands_NotSpecified()
     {
-        var args = new string[] { };
+        var args = Array.Empty<string>();
         var parsed = new CoconaCommandLineParser().ParseCommand(
             args,
             new ICommandOptionDescriptor[]
@@ -1493,7 +1441,7 @@ public class CoconaCommandLineParserTest
                 CreateCommandOption(typeof(bool), "force", new [] { 'f' }, "", new CoconaDefaultValue(false)),
                 CreateCommandOption(typeof(string), "message", new [] { 'm' }, "", new CoconaDefaultValue(string.Empty)),
                 new CommandOptionLikeCommandDescriptor("help", new [] { 'h' }, BuiltInOptionLikeCommands.Help.Command, CommandOptionFlags.None),
-                new CommandOptionLikeCommandDescriptor("version", new char[] { }, BuiltInOptionLikeCommands.Version.Command, CommandOptionFlags.None),
+                new CommandOptionLikeCommandDescriptor("version", Array.Empty<char>(), BuiltInOptionLikeCommands.Version.Command, CommandOptionFlags.None),
             },
             new CommandArgumentDescriptor[]
             {
@@ -1520,7 +1468,7 @@ public class CoconaCommandLineParserTest
                 CreateCommandOption(typeof(bool), "force", new [] { 'f' }, "", new CoconaDefaultValue(false)),
                 CreateCommandOption(typeof(string), "message", new [] { 'm' }, "", new CoconaDefaultValue(string.Empty)),
                 new CommandOptionLikeCommandDescriptor("help", new [] { 'h' }, BuiltInOptionLikeCommands.Help.Command, CommandOptionFlags.None),
-                new CommandOptionLikeCommandDescriptor("version", new char[] { }, BuiltInOptionLikeCommands.Version.Command, CommandOptionFlags.None),
+                new CommandOptionLikeCommandDescriptor("version", Array.Empty<char>(), BuiltInOptionLikeCommands.Version.Command, CommandOptionFlags.None),
             },
             new CommandArgumentDescriptor[]
             {
@@ -1548,7 +1496,7 @@ public class CoconaCommandLineParserTest
                 CreateCommandOption(typeof(bool), "force", new [] { 'f' }, "", new CoconaDefaultValue(false)),
                 CreateCommandOption(typeof(string), "message", new [] { 'm' }, "", new CoconaDefaultValue(string.Empty)),
                 new CommandOptionLikeCommandDescriptor("help", new [] { 'h' }, BuiltInOptionLikeCommands.Help.Command, CommandOptionFlags.None),
-                new CommandOptionLikeCommandDescriptor("version", new char[] { }, BuiltInOptionLikeCommands.Version.Command, CommandOptionFlags.None),
+                new CommandOptionLikeCommandDescriptor("version", Array.Empty<char>(), BuiltInOptionLikeCommands.Version.Command, CommandOptionFlags.None),
             },
             new CommandArgumentDescriptor[]
             {
@@ -1576,7 +1524,7 @@ public class CoconaCommandLineParserTest
                 CreateCommandOption(typeof(bool), "force", new [] { 'f' }, "", new CoconaDefaultValue(false)),
                 CreateCommandOption(typeof(string), "message", new [] { 'm' }, "", new CoconaDefaultValue(string.Empty)),
                 new CommandOptionLikeCommandDescriptor("help", new [] { 'h' }, BuiltInOptionLikeCommands.Help.Command, CommandOptionFlags.None),
-                new CommandOptionLikeCommandDescriptor("version", new char[] { }, BuiltInOptionLikeCommands.Version.Command, CommandOptionFlags.None),
+                new CommandOptionLikeCommandDescriptor("version", Array.Empty<char>(), BuiltInOptionLikeCommands.Version.Command, CommandOptionFlags.None),
             },
             new CommandArgumentDescriptor[]
             {
