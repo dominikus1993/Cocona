@@ -4,7 +4,7 @@ namespace Cocona;
 /// Specifies the parameter that should be treated as command argument.
 /// </summary>
 [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public class ArgumentAttribute : Attribute
+public sealed class ArgumentAttribute : Attribute
 {
     /// <summary>
     /// Gets or sets the argument description.

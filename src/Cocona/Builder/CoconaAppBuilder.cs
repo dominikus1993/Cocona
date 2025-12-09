@@ -41,7 +41,7 @@ public class CoconaAppBuilder
             }
         });
         
-        var (hostBuilderContext, hostConfiguration) = bootstrapHostBuilder.Apply(Configuration, _hostBuilder);
+        var (hostBuilderContext, _) = bootstrapHostBuilder.Apply(Configuration, _hostBuilder);
 
         _configureHostBuilder = new ConfigureHostBuilder(hostBuilderContext, Configuration, Services);
         Environment = hostBuilderContext.HostingEnvironment;

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Cocona.Hosting;
 
-public class CoconaServiceProviderIsService : ICoconaServiceProviderIsService
+public sealed class CoconaServiceProviderIsService : ICoconaServiceProviderIsService
 {
     private readonly IServiceProviderIsService _serviceProviderIsService;
     public CoconaServiceProviderIsService(IServiceProviderIsService serviceProviderIsService)

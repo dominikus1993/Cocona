@@ -69,7 +69,7 @@ public class CoconaHostedService : IHostedService
         }
         catch (Exception ex)
         {
-            _console.Error.WriteLine(ex.ToString());
+            await _console.Error.WriteLineAsync(ex.ToString());
             Environment.ExitCode = 1;
         }
         finally
@@ -80,25 +80,28 @@ public class CoconaHostedService : IHostedService
 
     public async Task StopAsync(CancellationToken cancellationToken)
     {
-        _cancellationTokenSource.Cancel();
+        await _cancellationTokenSource.CancelAsync();
 
-        if (_runningCommandTask != null && !_runningCommandTask.IsCompleted)
+        if (_runningCommandTask is not { IsCompleted: false })
         {
-            var cancellationTask = CreateTaskFromCancellationToken(cancellationToken);
-            try
-            {
-                var winTask = await Task.WhenAny(cancellationTask, _runningCommandTask);
-                if (winTask == _runningCommandTask)
-                {
-                    await _runningCommandTask;
-                }
-            }
-            catch (OperationCanceledException e) when (e.CancellationToken == cancellationToken)
-            {
-                Environment.ExitCode = 130;
-            }
+            return;
         }
 
+        var cancellationTask = CreateTaskFromCancellationToken(cancellationToken);
+        try
+        {
+            var winTask = await Task.WhenAny(cancellationTask, _runningCommandTask);
+            if (winTask == _runningCommandTask)
+            {
+                await _runningCommandTask;
+            }
+        }
+        catch (OperationCanceledException e) when (e.CancellationToken == cancellationToken)
+        {
+            Environment.ExitCode = 130;
+        }
+
+        return;
         static Task CreateTaskFromCancellationToken(CancellationToken cancellationToken)
         {
             var tsc = new TaskCompletionSource<bool>();
