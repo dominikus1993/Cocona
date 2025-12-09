@@ -4,7 +4,7 @@ using Cocona.Command.Binder.Validation;
 
 namespace Cocona.Command.Binder;
 
-public class CoconaParameterBinder : ICoconaParameterBinder
+public sealed class CoconaParameterBinder : ICoconaParameterBinder
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly ICoconaValueConverter _valueConverter;
@@ -269,15 +269,18 @@ public class CoconaParameterBinder : ICoconaParameterBinder
             // T[] or List<T> (IEnumerable<T>, IList<T>)
             return option is not null ? Validate(option, arrayOrEnumerableLike) : Validate(argument!, arrayOrEnumerableLike);
         }
-        else if (!DynamicListHelper.IsArrayOrEnumerableLike(valueType))
-        {
-            // Primitive or plain object (int, bool, string ...)
-            var value = values[values.Length - 1];
-            if (value == null) throw new ParameterBinderException(ParameterBinderResult.InsufficientOptionValue, option, argument);
 
-            return (option != null) ? ConvertTo(option!, valueType, value) : ConvertTo(argument!, valueType, value);
+        if (DynamicListHelper.IsArrayOrEnumerableLike(valueType))
+        {
+            throw new ParameterBinderException(ParameterBinderResult.TypeNotSupported,
+                $"Cannot create a instance of type '{valueType.FullName}'", option, argument);
         }
 
-        throw new ParameterBinderException(ParameterBinderResult.TypeNotSupported, $"Cannot create a instance of type '{valueType.FullName}'", option, argument);
+        // Primitive or plain object (int, bool, string ...)
+        var value = values[^1];
+        if (value == null) throw new ParameterBinderException(ParameterBinderResult.InsufficientOptionValue, option, argument);
+
+        return (option != null) ? ConvertTo(option!, valueType, value) : ConvertTo(argument!, valueType, value);
+
     }
 }

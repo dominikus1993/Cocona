@@ -1,7 +1,7 @@
 ﻿namespace Cocona;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
-public class CommandOverloadAttribute : Attribute
+public sealed class CommandOverloadAttribute : Attribute
 {
     public string TargetCommand { get; }
     public string OptionName { get; }

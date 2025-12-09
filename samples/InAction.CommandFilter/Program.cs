@@ -73,19 +73,19 @@ class SampleCommandFilterWithDI : ICommandFilter
 
     public async ValueTask<int> OnCommandExecutionAsync(CoconaCommandExecutingContext ctx, CommandExecutionDelegate next)
     {
-        _logger.LogInformation($"[SampleCommandFilterWithDI] Before Command: {ctx.Command.Name}");
+        _logger.LogInformation("[SampleCommandFilterWithDI] Before Command: {CommandName}", ctx.Command.Name);
         try
         {
             return await next(ctx);
         }
         catch (Exception ex)
         {
-            _logger.LogInformation($"[SampleCommandFilterWithDI] Exception: {ex.GetType().FullName}: {ex.Message}");
+            _logger.LogError(ex, "[SampleCommandFilterWithDI]");
             throw;
         }
         finally
         {
-            _logger.LogInformation($"[SampleCommandFilterWithDI] End Command: {ctx.Command.Name}");
+            _logger.LogInformation("[SampleCommandFilterWithDI] End Command: {CommandName}", ctx.Command.Name);
         }
     }
 }

@@ -68,7 +68,7 @@ public class CoconaCommandHelpProviderLocalizeTest
         var commandDescriptor2 = CreateCommand(
             "Test2",
             "command2 description",
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             CommandFlags.None
         );
 

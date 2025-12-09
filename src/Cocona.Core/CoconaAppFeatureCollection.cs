@@ -1,6 +1,6 @@
 namespace Cocona;
 
-public class CoconaAppFeatureCollection
+public sealed class CoconaAppFeatureCollection
 {
     private readonly Dictionary<Type, object?> _feature = new Dictionary<Type, object?>();
 

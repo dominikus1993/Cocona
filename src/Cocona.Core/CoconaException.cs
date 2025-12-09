@@ -1,6 +1,6 @@
 namespace Cocona;
 
-public class CoconaException : Exception
+public sealed class CoconaException : Exception
 {
     public CoconaException(string message)
         : base(message)

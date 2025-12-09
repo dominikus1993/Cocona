@@ -38,7 +38,7 @@ public class ParameterValidationTest
     {
         var command = CreateCommand(new[]
         {
-            new CommandOptionDescriptor(typeof(int), "arg0", Array.Empty<char>(), "", CoconaDefaultValue.None, null, CommandOptionFlags.None, new Attribute[] { } )
+            new CommandOptionDescriptor(typeof(int), "arg0", Array.Empty<char>(), "", CoconaDefaultValue.None, null, CommandOptionFlags.None, Array.Empty<Attribute>() )
         });
 
         var binder = CreateCoconaParameterBinder();
@@ -91,7 +91,7 @@ public class ParameterValidationTest
     {
         var command = CreateCommand(new[]
         {
-            new CommandArgumentDescriptor(typeof(int), "arg0", 0, "", CoconaDefaultValue.None, new Attribute[] { } )
+            new CommandArgumentDescriptor(typeof(int), "arg0", 0, "", CoconaDefaultValue.None, Array.Empty<Attribute>() )
         });
 
         var binder = CreateCoconaParameterBinder();

@@ -10,7 +10,7 @@ public class FromServiceTest
     [Fact]
     public void FromService_NoMetadata()
     {
-        var metadata = new object[0];
+        var metadata = Array.Empty<object>();
         var serviceProviderIsService = new FakeCoconaServiceProviderIsService(typeof(IMyService));
         var cmd = new CoconaCommandProvider(Array.Empty<Type>(), serviceProviderIsService: serviceProviderIsService)
             .CreateCommand(GetMethod<CommandTest>(nameof(CommandTest.Hello)), isSingleCommand: true, new Dictionary<string, List<(MethodInfo Method, CommandOverloadAttribute Attribute)>>(), default, metadata);
@@ -45,7 +45,7 @@ public class FromServiceTest
     [Fact]
     public void FromService_ByAttribute()
     {
-        var metadata = new object[0];
+        var metadata = Array.Empty<object>();
         var serviceProviderIsService = new FakeCoconaServiceProviderIsService(typeof(IMyService));
         var cmd = new CoconaCommandProvider(Array.Empty<Type>(), serviceProviderIsService: serviceProviderIsService)
             .CreateCommand(GetMethod<CommandTest>(nameof(CommandTest.HelloWithAttribute)), isSingleCommand: true, new Dictionary<string, List<(MethodInfo Method, CommandOverloadAttribute Attribute)>>(), default, metadata);

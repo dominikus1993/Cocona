@@ -18,7 +18,7 @@ public static class CoconaAppHostBuilderExtensions
     /// <param name="args"></param>
     /// <param name="configureOptions"></param>
     public static void Run<T>(this CoconaAppHostBuilder builder, string[] args, Action<CoconaAppOptions>? configureOptions = null)
-        => builder.Run(args, new[] { typeof(T) }, configureOptions);
+        => builder.Run(args, [typeof(T)], configureOptions);
 
     /// <summary>
     /// Builds host and starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.
@@ -29,7 +29,7 @@ public static class CoconaAppHostBuilderExtensions
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static Task RunAsync(this CoconaAppHostBuilder builder, string[] args, Action<CoconaAppOptions>? configureOptions = null, CancellationToken cancellationToken = default)
-        => builder.RunAsync(args, Array.Empty<Type>(), configureOptions, cancellationToken);
+        => builder.RunAsync(args, [], configureOptions, cancellationToken);
 
     /// <summary>
     /// Builds host and starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.
@@ -38,7 +38,7 @@ public static class CoconaAppHostBuilderExtensions
     /// <param name="args"></param>
     /// <param name="configureOptions"></param>
     public static void Run(this CoconaAppHostBuilder builder, string[] args, Action<CoconaAppOptions>? configureOptions = null)
-        => builder.Run(args, Array.Empty<Type>(), configureOptions);
+        => builder.Run(args, [], configureOptions);
 
     /// <summary>
     /// Builds host and starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.
@@ -50,7 +50,7 @@ public static class CoconaAppHostBuilderExtensions
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static Task RunAsync<T>(this CoconaAppHostBuilder builder, string[] args, Action<CoconaAppOptions>? configureOptions = null, CancellationToken cancellationToken = default)
-        => builder.RunAsync(args, new[] { typeof(T) }, configureOptions, cancellationToken);
+        => builder.RunAsync(args, [typeof(T)], configureOptions, cancellationToken);
 
     /// <summary>
     /// Builds host and starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.
@@ -59,7 +59,7 @@ public static class CoconaAppHostBuilderExtensions
     /// <param name="builder"></param>
     /// <param name="configureOptions"></param>
     public static void Run<T>(this CoconaAppHostBuilder builder, Action<CoconaAppOptions>? configureOptions = null)
-        => builder.Run(null, new[] { typeof(T) }, configureOptions);
+        => builder.Run(null, [typeof(T)], configureOptions);
 
     /// <summary>
     /// Builds host and starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.
@@ -70,7 +70,7 @@ public static class CoconaAppHostBuilderExtensions
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static Task RunAsync<T>(this CoconaAppHostBuilder builder, Action<CoconaAppOptions>? configureOptions = null, CancellationToken cancellationToken = default)
-        => builder.RunAsync(null, new[] { typeof(T) }, configureOptions, cancellationToken);
+        => builder.RunAsync(null, [typeof(T)], configureOptions, cancellationToken);
 
     /// <summary>
     /// Builds host and starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.
@@ -78,7 +78,7 @@ public static class CoconaAppHostBuilderExtensions
     /// <param name="builder"></param>
     /// <param name="configureOptions"></param>
     public static void Run(this CoconaAppHostBuilder builder, Action<CoconaAppOptions>? configureOptions = null)
-        => builder.Run(null, Array.Empty<Type>(), configureOptions);
+        => builder.Run(null, [], configureOptions);
 
     /// <summary>
     /// Builds host and starts the Cocona enabled application, and waits for Ctrl+C or SIGTERM to shutdown.
@@ -88,7 +88,7 @@ public static class CoconaAppHostBuilderExtensions
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public static Task RunAsync(this CoconaAppHostBuilder builder, Action<CoconaAppOptions>? configureOptions = null, CancellationToken cancellationToken = default)
-        => builder.RunAsync(null, Array.Empty<Type>(), configureOptions, cancellationToken);
+        => builder.RunAsync(null, [], configureOptions, cancellationToken);
 }
 
 #if COCONA_LITE

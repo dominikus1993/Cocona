@@ -9,7 +9,7 @@ namespace Cocona;
 /// Specifies that the command has the option-like command.
 /// </summary>
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
-public class OptionLikeCommandAttribute : Attribute, IOptionLikeCommandMetadata
+public sealed class OptionLikeCommandAttribute : Attribute, IOptionLikeCommandMetadata
 {
     public string OptionName { get; }
     public IReadOnlyList<char> ShortNames { get; }
@@ -35,7 +35,7 @@ public class OptionLikeCommandAttribute : Attribute, IOptionLikeCommandMetadata
         }
 
         return new DelegateCommandData(methodInfo, null, new [] { new CommandNameMetadata(OptionName) }
-            .Concat(Description is { } description ? new object[] { new CommandDescriptionMetadata(description) } : new object[0])
+            .Concat(Description is { } description ? new object[] { new CommandDescriptionMetadata(description) } : [])
             .Concat(methodInfo.GetCustomAttributes(inherit: true)).ToArray());
     }
 }

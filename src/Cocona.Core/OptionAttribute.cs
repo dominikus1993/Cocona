@@ -4,7 +4,7 @@ namespace Cocona;
 /// Specifies the parameter that should be treated as command option.
 /// </summary>
 [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-public class OptionAttribute : Attribute
+public sealed class OptionAttribute : Attribute
 {
     /// <summary>
     /// Gets or sets the option description.
@@ -19,7 +19,7 @@ public class OptionAttribute : Attribute
     /// <summary>
     /// Gets or sets the option short-form names. (e.g. 'O', 'f')
     /// </summary>
-    public IReadOnlyList<char> ShortNames { get; } = Array.Empty<char>();
+    public IReadOnlyList<char> ShortNames { get; } = [];
 
     /// <summary>
     /// Gets the option value name.
@@ -37,18 +37,18 @@ public class OptionAttribute : Attribute
     public OptionAttribute(string name, char[]? shortNames = null)
     {
         Name = name ?? throw new ArgumentNullException(nameof(name));
-        ShortNames = shortNames ?? Array.Empty<char>();
+        ShortNames = shortNames ?? [];
 
         if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("A name of option must have name.");
     }
 
     public OptionAttribute(char shortName)
     {
-        ShortNames = new[] { shortName };
+        ShortNames = [shortName];
     }
 
     public OptionAttribute(char[]? shortNames)
     {
-        ShortNames = shortNames ?? Array.Empty<char>();
+        ShortNames = shortNames ?? [];
     }
 }

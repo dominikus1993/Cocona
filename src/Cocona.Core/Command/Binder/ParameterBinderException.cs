@@ -1,6 +1,6 @@
 namespace Cocona.Command.Binder;
 
-public class ParameterBinderException : Exception
+public sealed class ParameterBinderException : Exception
 {
     public ParameterBinderResult Result { get; }
     public CommandArgumentDescriptor? Argument { get; }

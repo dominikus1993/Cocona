@@ -7,7 +7,7 @@ namespace Cocona.ShellCompletion;
 /// <summary>
 /// Default implementation of <see cref="ICoconaShellCompletionCodeProvider"/>
 /// </summary>
-public class CoconaShellCompletionCodeProvider : ICoconaShellCompletionCodeProvider
+public sealed class CoconaShellCompletionCodeProvider : ICoconaShellCompletionCodeProvider
 {
     private readonly ICoconaShellCompletionCodeGenerator[] _providers;
 
@@ -18,7 +18,8 @@ public class CoconaShellCompletionCodeProvider : ICoconaShellCompletionCodeProvi
 
     public CoconaShellCompletionCodeProvider(IEnumerable<ICoconaShellCompletionCodeGenerator> providers)
     {
-        _providers = providers?.ToArray() ?? throw new ArgumentNullException(nameof(providers));
+        ArgumentNullException.ThrowIfNull(providers);
+        _providers = providers.ToArray();
         SupportedTargets = _providers.SelectMany(xs => xs.Targets).ToArray();
     }
 

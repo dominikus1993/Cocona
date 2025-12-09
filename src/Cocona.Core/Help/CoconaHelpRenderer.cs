@@ -104,7 +104,7 @@ public class CoconaHelpRenderer : ICoconaHelpRenderer
         }
     }
 
-    public class CoconaHelpRenderingContext
+    public sealed class CoconaHelpRenderingContext
     {
         public int CurrentDepth => Sections.Count - 1; // (root) -> section ...
         public Stack<SectionStackItem> Sections { get; } = new Stack<SectionStackItem>();

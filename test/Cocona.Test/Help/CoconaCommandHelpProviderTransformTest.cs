@@ -66,7 +66,7 @@ public class CoconaCommandHelpProviderTransformTest
     {
         var commandDescriptor = CreateCommand<TestCommand>(
             nameof(TestCommand.A),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: false
         );
 
@@ -87,7 +87,7 @@ Hello, Konnichiwa!
     {
         var commandDescriptor = CreateCommand<TestCommand_InheritedAttribute>(
             nameof(TestCommand_InheritedAttribute.A),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: false
         );
 
@@ -108,7 +108,7 @@ Hi!
     {
         var commandDescriptor = CreateCommand<TestCommand>(
             nameof(TestCommand.A),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: true
         );
 
@@ -129,17 +129,17 @@ Hello, Konnichiwa!
     {
         var commandDescriptor = CreateCommand<TestCommand_Primary>(
             nameof(TestCommand_Primary.Default),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: true
         );
         var commandDescriptor1 = CreateCommand<TestCommand_Primary>(
             nameof(TestCommand_Primary.A),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: false
         );
         var commandDescriptor2 = CreateCommand<TestCommand_Primary>(
             nameof(TestCommand_Primary.B),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: false
         );
 
@@ -164,17 +164,17 @@ Hello, Konnichiwa!
     {
         var commandDescriptor = CreateCommand<TestCommand_Primary_InheritedAttribute>(
             nameof(TestCommand_Primary_InheritedAttribute.Default),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: true
         );
         var commandDescriptor1 = CreateCommand<TestCommand_Primary_InheritedAttribute>(
             nameof(TestCommand_Primary_InheritedAttribute.A),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: false
         );
         var commandDescriptor2 = CreateCommand<TestCommand_Primary_InheritedAttribute>(
             nameof(TestCommand_Primary_InheritedAttribute.B),
-            new ICommandParameterDescriptor[0],
+            Array.Empty<ICommandParameterDescriptor>(),
             isPrimaryCommand: false
         );
 

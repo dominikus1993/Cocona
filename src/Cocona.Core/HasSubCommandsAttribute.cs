@@ -4,7 +4,7 @@ namespace Cocona;
 /// Specifies a class has a nested sub-commands.
 /// </summary>
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
-public class HasSubCommandsAttribute : Attribute
+public sealed class HasSubCommandsAttribute : Attribute
 {
     /// <summary>
     ///  Gets the sub-commands collection type.

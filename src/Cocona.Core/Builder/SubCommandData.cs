@@ -45,7 +45,7 @@ public class SubCommandsDataSource : ICommandDataSource
     class CommandBuilder : ICommandBuilder
     {
         public object? Target { get; set; }
-        public IList<object> Metadata { get; } = new List<object>();
+        public IList<object> Metadata { get; }
         public IReadOnlyList<ICommandData> SubCommands { get; set; }
 
         public CommandBuilder(SubCommandsDataSource source)

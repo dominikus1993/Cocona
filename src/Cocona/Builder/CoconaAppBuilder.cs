@@ -40,21 +40,23 @@ public class CoconaAppBuilder
                 app.AddCommand(commandData);
             }
         });
-        var (hostBuilderContext, hostConfiguration) = bootstrapHostBuilder.Apply(Configuration, _hostBuilder);
+        
+        var (hostBuilderContext, _) = bootstrapHostBuilder.Apply(Configuration, _hostBuilder);
 
         _configureHostBuilder = new ConfigureHostBuilder(hostBuilderContext, Configuration, Services);
         Environment = hostBuilderContext.HostingEnvironment;
         Logging = new LoggingBuilder(_services);
 
-        _services.AddSingleton<IConfiguration>(sp => Configuration);
+        _services.AddSingleton<IConfiguration>(Configuration);
     }
 
     public CoconaApp Build()
     {
-        _hostBuilder.ConfigureAppConfiguration((hostBuilder, configuration) =>
+        _hostBuilder.ConfigureAppConfiguration((ctx, configuration) =>
         {
             // Use the HostEnvironment created by CoconaAppBuilder instead of the default.
-            hostBuilder.HostingEnvironment = Environment;
+            ctx.HostingEnvironment = Environment;
+            
 
             var chainedSource = new ChainedConfigurationSource()
             {
@@ -69,7 +71,7 @@ public class CoconaAppBuilder
             }
         });
 
-        _hostBuilder.ConfigureServices((hostBuilder, services) =>
+        _hostBuilder.ConfigureServices(services =>
         {
             services.AddSingleton(Environment);
 

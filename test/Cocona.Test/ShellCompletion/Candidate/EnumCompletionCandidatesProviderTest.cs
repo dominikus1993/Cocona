@@ -17,7 +17,7 @@ public class EnumCompletionCandidatesProviderTest
             CoconaDefaultValue.None,
             string.Empty,
             CommandOptionFlags.None,
-            new Attribute[] { }
+            Array.Empty<Attribute>()
         );
         var metadata = new CoconaCompletionCandidatesMetadata(
             CompletionCandidateType.Provider,
@@ -40,7 +40,7 @@ public class EnumCompletionCandidatesProviderTest
             CoconaDefaultValue.None,
             string.Empty,
             CommandOptionFlags.None,
-            new Attribute[] { }
+            Array.Empty<Attribute>()
         );
         var metadata = new CoconaCompletionCandidatesMetadata(
             CompletionCandidateType.Provider,
@@ -67,7 +67,7 @@ public class EnumCompletionCandidatesProviderTest
             0,
             "",
             CoconaDefaultValue.None,
-            new Attribute[] { }
+            Array.Empty<Attribute>()
         );
         var metadata = new CoconaCompletionCandidatesMetadata(
             CompletionCandidateType.Provider,
@@ -89,7 +89,7 @@ public class EnumCompletionCandidatesProviderTest
             0,
             "",
             CoconaDefaultValue.None,
-            new Attribute[] { }
+            Array.Empty<Attribute>()
         );
         var metadata = new CoconaCompletionCandidatesMetadata(
             CompletionCandidateType.Provider,
