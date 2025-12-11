@@ -104,14 +104,14 @@ public class CoconaHelpRenderer : ICoconaHelpRenderer
         }
     }
 
-    public class CoconaHelpRenderingContext
+    public sealed class CoconaHelpRenderingContext
     {
         public int CurrentDepth => Sections.Count - 1; // (root) -> section ...
         public Stack<SectionStackItem> Sections { get; } = new Stack<SectionStackItem>();
         public SectionStackItem? CurrentSection { get; set; }
         public StringBuilder StringBuilder { get; } = new StringBuilder();
 
-        public class SectionStackItem : IDisposable
+        public sealed class SectionStackItem : IDisposable
         {
             private readonly CoconaHelpRenderingContext _ctx;
 

@@ -52,7 +52,7 @@ public class CoconaHelpMessageBuilder : ICoconaHelpMessageBuilder
         var targetCommand = respectCurrentCommand ? feature.Command : feature.CommandStack.LastOrDefault();
 
         var help = targetCommand is null
-            ? _commandHelpProvider.CreateCommandsIndexHelp(commandCollection, Array.Empty<CommandDescriptor>())
+            ? _commandHelpProvider.CreateCommandsIndexHelp(commandCollection, [])
             : targetCommand.IsPrimaryCommand || targetCommand.Flags.HasFlag(CommandFlags.SubCommandsEntryPoint)
                 ? _commandHelpProvider.CreateCommandsIndexHelp(commandCollection, feature.CommandStack.Take(feature.CommandStack.Count - 1).ToArray())
                 : _commandHelpProvider.CreateCommandHelp(targetCommand, feature.CommandStack.Take(feature.CommandStack.Count - 1).ToArray());

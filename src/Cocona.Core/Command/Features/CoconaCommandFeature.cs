@@ -4,7 +4,7 @@ public interface ICoconaCommandFeature
 {
     object? CommandInstance { get; }
     CommandDescriptor Command { get; }
-    CommandCollection CommandCollection { get; }
+    CommandCollection? CommandCollection { get; }
     IReadOnlyList<CommandDescriptor> CommandStack { get; }
 }
 
@@ -12,7 +12,7 @@ public class CoconaCommandFeature : ICoconaCommandFeature
 {
     public object? CommandInstance { get; }
     public CommandDescriptor Command { get; }
-    public CommandCollection CommandCollection { get; }
+    public CommandCollection? CommandCollection { get; }
     public IReadOnlyList<CommandDescriptor> CommandStack { get; }
 
     public CoconaCommandFeature(CommandCollection commandCollection, CommandDescriptor commandDescriptor, IReadOnlyList<CommandDescriptor> commandStack, object? commandInstance)

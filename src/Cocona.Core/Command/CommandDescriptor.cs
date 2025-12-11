@@ -4,7 +4,7 @@ using System.Reflection;
 namespace Cocona.Command;
 
 [DebuggerDisplay("Command: {Name,nq}; CommandType={CommandType.FullName,nq}; Options={Options.Count,nq}; Arguments={Arguments.Count,nq}; Flags={Flags,nq}")]
-public class CommandDescriptor
+public sealed class CommandDescriptor
 {
     public MethodInfo Method { get; }
     public object? Target { get; }
