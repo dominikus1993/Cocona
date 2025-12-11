@@ -60,7 +60,7 @@ public class OptionLikeDelegateCommandDataSource : ICommandDataSource
         public MethodInfo Method { get; }
         public object? Target { get; }
         public IReadOnlyList<char> ShortNames { get; }
-        public IList<object> Metadata { get; } = new List<object>();
+        public IList<object> Metadata { get; }
 
         public CommandBuilder(OptionLikeDelegateCommandDataSource source)
         {

@@ -50,7 +50,7 @@ public class TypeCommandDataSource : ICommandDataSource
     class CommandBuilder : ICommandBuilder
     {
         public Type Type { get; set; }
-        public IList<object> Metadata { get; } = new List<object>();
+        public IList<object> Metadata { get; }
 
         public CommandBuilder(TypeCommandDataSource source)
         {

@@ -18,7 +18,7 @@ public class CoconaCompletionCandidatesMetadataFactoryTest
             CoconaDefaultValue.None,
             string.Empty,
             CommandOptionFlags.None,
-            new Attribute[]{  }
+            Array.Empty<Attribute>()
         );
 
         var metadata = factory.GetMetadata(option);
@@ -38,7 +38,7 @@ public class CoconaCompletionCandidatesMetadataFactoryTest
             CoconaDefaultValue.None,
             string.Empty,
             CommandOptionFlags.None,
-            new Attribute[] { }
+            Array.Empty<Attribute>()
         );
 
         var metadata = factory.GetMetadata(option);

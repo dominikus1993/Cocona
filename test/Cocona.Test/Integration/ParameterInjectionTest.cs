@@ -69,7 +69,7 @@ public class ParameterInjectionTest : EndToEndTestBase
     [Fact]
     public void ParameterInjection_CoconaAppContext_AutoWiring_CoconaApp_CreateBuilder_Delegate()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] {}, args =>
+        var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             var app = builder.Build();
@@ -84,7 +84,7 @@ public class ParameterInjectionTest : EndToEndTestBase
     [Fact]
     public void ParameterInjection_CoconaAppContext_AutoWiring_CoconaApp_CreateBuilder_Type()
     {
-        var (stdOut, stdErr, exitCode) = Run(new string[] { }, args =>
+        var (stdOut, stdErr, exitCode) = Run(Array.Empty<string>(), args =>
         {
             var builder = CoconaApp.CreateBuilder(args);
             var app = builder.Build();

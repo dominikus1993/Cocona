@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Cocona.Command.Dispatcher.Middlewares;
 
-public class InitializeConsoleAppMiddleware : CommandDispatcherMiddleware
+public sealed class InitializeConsoleAppMiddleware : CommandDispatcherMiddleware
 {
     private readonly ICoconaAppContextAccessor _appContext;
     private readonly ILoggerFactory _loggerFactory;

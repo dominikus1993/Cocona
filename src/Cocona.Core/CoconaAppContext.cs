@@ -5,7 +5,7 @@ namespace Cocona;
 /// <summary>
 /// Stores commonly used values about an application's command executing in Cocona.
 /// </summary>
-public class CoconaAppContext
+public sealed class CoconaAppContext
 {
     /// <summary>
     /// Gets a cancellation token to waits for shutdown signal.

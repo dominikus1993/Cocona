@@ -21,19 +21,19 @@ public class HandleParameterBindExceptionMiddleware : CommandDispatcherMiddlewar
         }
         catch (ParameterBinderException paramEx) when (paramEx.Result == ParameterBinderResult.InsufficientArgument)
         {
-            _console.Error.WriteLine(string.Format(Strings.Command_Error_Insufficient_Argument, paramEx.Argument!.Name));
+            await _console.Error.WriteLineAsync(string.Format(Strings.Command_Error_Insufficient_Argument, paramEx.Argument!.Name));
         }
         catch (ParameterBinderException paramEx) when (paramEx.Result == ParameterBinderResult.InsufficientOption)
         {
-            _console.Error.WriteLine(string.Format(Strings.Command_Error_Insufficient_Option, paramEx.Option!.Name));
+            await _console.Error.WriteLineAsync(string.Format(Strings.Command_Error_Insufficient_Option, paramEx.Option!.Name));
         }
         catch (ParameterBinderException paramEx) when (paramEx.Result == ParameterBinderResult.InsufficientOptionValue)
         {
-            _console.Error.WriteLine(string.Format(Strings.Command_Error_Insufficient_OptionValue, paramEx.Option!.Name));
+            await _console.Error.WriteLineAsync(string.Format(Strings.Command_Error_Insufficient_OptionValue, paramEx.Option!.Name));
         }
-        catch (ParameterBinderException paramEx) when (paramEx.Result == ParameterBinderResult.TypeNotSupported || paramEx.Result == ParameterBinderResult.ValidationFailed)
+        catch (ParameterBinderException paramEx) when (paramEx.Result is ParameterBinderResult.TypeNotSupported or ParameterBinderResult.ValidationFailed)
         {
-            _console.Error.WriteLine(string.Format(Strings.Command_Error_ParameterBind, paramEx.Message));
+            await _console.Error.WriteLineAsync(string.Format(Strings.Command_Error_ParameterBind, paramEx.Message));
         }
 
         return 1;

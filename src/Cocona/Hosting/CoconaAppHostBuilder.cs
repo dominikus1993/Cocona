@@ -9,7 +9,7 @@ namespace Cocona.Hosting;
 /// <summary>
 /// Builder for Cocona enabled application host.
 /// </summary>
-public class CoconaAppHostBuilder
+public sealed class CoconaAppHostBuilder
 {
     private readonly IHostBuilder _builder;
 

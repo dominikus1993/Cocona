@@ -22,7 +22,7 @@ public static class CoconaHostBuilderExtensions
         {
             app.AddCommands(types);
 
-            foreach (var method in (methods ?? Array.Empty<Delegate>()))
+            foreach (var method in (methods ?? []))
             {
                 app.AddCommand(method);
             }

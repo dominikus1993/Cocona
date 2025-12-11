@@ -9,13 +9,13 @@ public class CoconaCommandResolverTest
     [Fact]
     public void Empty()
     {
-        var commandCollection = new CommandCollection(new CommandDescriptor[] { });
+        var commandCollection = new CommandCollection(Array.Empty<CommandDescriptor>());
         var resolver = new CoconaCommandResolver(
             new CoconaCommandLineParser(),
             new CoconaCommandMatcher()
         );
 
-        var resolve = resolver.ParseAndResolve(commandCollection, new string[] { });
+        var resolve = resolver.ParseAndResolve(commandCollection, Array.Empty<string>());
         resolve.Success.Should().BeFalse();
     }
 
@@ -24,14 +24,14 @@ public class CoconaCommandResolverTest
     {
         var commandCollection = new CommandCollection(new CommandDescriptor[]
         {
-            CreateCommand("Primary", new ICommandParameterDescriptor[]{}, true),
+            CreateCommand("Primary", Array.Empty<ICommandParameterDescriptor>(), true),
         });
         var resolver = new CoconaCommandResolver(
             new CoconaCommandLineParser(),
             new CoconaCommandMatcher()
         );
 
-        var resolve = resolver.ParseAndResolve(commandCollection, new string[] { });
+        var resolve = resolver.ParseAndResolve(commandCollection, Array.Empty<string>());
         resolve.Success.Should().BeTrue();
         resolve.MatchedCommand.Name.Should().Be("Primary");
     }
@@ -41,14 +41,14 @@ public class CoconaCommandResolverTest
     {
         var commandCollection = new CommandCollection(new CommandDescriptor[]
         {
-            CreateCommand("Single", new ICommandParameterDescriptor[]{}, false),
+            CreateCommand("Single", Array.Empty<ICommandParameterDescriptor>(), false),
         });
         var resolver = new CoconaCommandResolver(
             new CoconaCommandLineParser(),
             new CoconaCommandMatcher()
         );
 
-        Assert.Throws<CommandNotFoundException>(() => resolver.ParseAndResolve(commandCollection, new string[] { }));
+        Assert.Throws<CommandNotFoundException>(() => resolver.ParseAndResolve(commandCollection, Array.Empty<string>()));
     }
 
     [Fact]
@@ -56,9 +56,9 @@ public class CoconaCommandResolverTest
     {
         var commandCollection = new CommandCollection(new CommandDescriptor[]
         {
-            CreateCommand("Primary", new ICommandParameterDescriptor[]{}, true),
-            CreateCommand("Foo", new ICommandParameterDescriptor[]{}, false),
-            CreateCommand("Bar", new ICommandParameterDescriptor[]{}, false),
+            CreateCommand("Primary", Array.Empty<ICommandParameterDescriptor>(), true),
+            CreateCommand("Foo", Array.Empty<ICommandParameterDescriptor>(), false),
+            CreateCommand("Bar", Array.Empty<ICommandParameterDescriptor>(), false),
         });
         var resolver = new CoconaCommandResolver(
             new CoconaCommandLineParser(),
@@ -75,7 +75,7 @@ public class CoconaCommandResolverTest
     {
         var commandCollection = new CommandCollection(new CommandDescriptor[]
         {
-            CreateCommand("Primary", new ICommandParameterDescriptor[]{}, true),
+            CreateCommand("Primary", Array.Empty<ICommandParameterDescriptor>(), true),
             CreateCommand("Foo", new ICommandParameterDescriptor[]
             {
                 new CommandOptionDescriptor(
@@ -89,7 +89,7 @@ public class CoconaCommandResolverTest
                     Array.Empty<Attribute>()
                 ),
             }, false),
-            CreateCommand("Bar", new ICommandParameterDescriptor[]{}, false),
+            CreateCommand("Bar", Array.Empty<ICommandParameterDescriptor>(), false),
         });
         var resolver = new CoconaCommandResolver(
             new CoconaCommandLineParser(),
@@ -110,7 +110,7 @@ public class CoconaCommandResolverTest
 
         var commandCollection = new CommandCollection(new CommandDescriptor[]
         {
-            CreateCommand("Primary", new ICommandParameterDescriptor[]{},
+            CreateCommand("Primary", Array.Empty<ICommandParameterDescriptor>(),
                 new CommandOptionLikeCommandDescriptor[]
                 {
                     optLikeCmd1,
@@ -138,7 +138,7 @@ public class CoconaCommandResolverTest
 
         var commandCollection = new CommandCollection(new CommandDescriptor[]
         {
-            CreateCommand("Primary", new ICommandParameterDescriptor[]{},
+            CreateCommand("Primary", Array.Empty<ICommandParameterDescriptor>(),
                 new CommandOptionLikeCommandDescriptor[]
                 {
                     optLikeCmd1,
@@ -161,7 +161,7 @@ public class CoconaCommandResolverTest
                     optLikeCmd2
                 },
                 false),
-            CreateCommand("Bar", new ICommandParameterDescriptor[]{}, false),
+            CreateCommand("Bar", Array.Empty<ICommandParameterDescriptor>(), false),
         });
         var resolver = new CoconaCommandResolver(
             new CoconaCommandLineParser(),
@@ -184,7 +184,7 @@ public class CoconaCommandResolverTest
         var optLikeCmd2 = CreateOptionLikeCommand("optlikecmd2", Array.Empty<char>(), "OptLikeCmd2");
         var commandCollection = new CommandCollection(new CommandDescriptor[]
         {
-            CreateCommand("Primary", new ICommandParameterDescriptor[]{}, true),
+            CreateCommand("Primary", Array.Empty<ICommandParameterDescriptor>(), true),
             CreateCommand("Foo", new ICommandParameterDescriptor[]
                 {
                     new CommandOptionDescriptor(
@@ -203,7 +203,7 @@ public class CoconaCommandResolverTest
                     optLikeCmd2,
                 },
                 false),
-            CreateCommand("Bar", new ICommandParameterDescriptor[]{}, false),
+            CreateCommand("Bar", Array.Empty<ICommandParameterDescriptor>(), false),
         });
         var resolver = new CoconaCommandResolver(
             new CoconaCommandLineParser(),
@@ -226,20 +226,20 @@ public class CoconaCommandResolverTest
         var optLikeCmd2 = CreateOptionLikeCommand("optlikecmd2", Array.Empty<char>(), "OptLikeCmd2");
         var commandCollectionNested = new CommandCollection(new CommandDescriptor[]
         {
-            CreateCommand("Primary", new ICommandParameterDescriptor[]{}, true),
-            CreateCommand("Level2", new ICommandParameterDescriptor[] { },
+            CreateCommand("Primary", Array.Empty<ICommandParameterDescriptor>(), true),
+            CreateCommand("Level2", Array.Empty<ICommandParameterDescriptor>(),
                 new CommandOptionLikeCommandDescriptor[] {optLikeCmd1, optLikeCmd2,},
                 false),
         });
         var commandCollection = new CommandCollection(new CommandDescriptor[]
         {
             CreateCommand("Primary",
-                new ICommandParameterDescriptor[]{},
+                Array.Empty<ICommandParameterDescriptor>(),
                 null,
                 null,
                 CommandFlags.SubCommandsEntryPoint),
             CreateCommand("Level1",
-                new ICommandParameterDescriptor[]{},
+                Array.Empty<ICommandParameterDescriptor>(),
                 null,
                 commandCollectionNested,
                 CommandFlags.None),

@@ -15,9 +15,7 @@ public class StaticKeywordsCompletionCandidatesProviderTest
             0,
             "",
             CoconaDefaultValue.None,
-            new Attribute[]
-            {
-            }
+            Array.Empty<Attribute>()
         );
         var metadata = new CoconaCompletionCandidatesMetadata(
             CompletionCandidateType.Provider,

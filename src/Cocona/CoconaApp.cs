@@ -9,7 +9,7 @@ namespace Cocona;
 /// <summary>
 /// Initializes and starts a Cocona enabled application.
 /// </summary>
-public partial class CoconaApp : ICoconaCommandsBuilder, ICoconaAppBuilder, IDisposable
+public sealed partial class CoconaApp : ICoconaCommandsBuilder, ICoconaAppBuilder, IDisposable
 {
     private readonly IHost _host;
     private readonly ICoconaCommandsBuilder _commandsBuilder = new CoconaCommandsBuilder();

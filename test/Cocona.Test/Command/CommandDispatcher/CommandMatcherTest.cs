@@ -73,7 +73,7 @@ public class CommandMatcherTest
     {
         var matcher = new CoconaCommandMatcher();
         var command = CreateCommand("A", Array.Empty<ICommandParameterDescriptor>());
-        var parsedCommandLine = new ParsedCommandLine(new CommandOption[] { }, new CommandArgument[] { }, new string[] { });
+        var parsedCommandLine = new ParsedCommandLine(Array.Empty<CommandOption>(), Array.Empty<CommandArgument>(), Array.Empty<string>());
         var resolved = matcher.ResolveOverload(command, parsedCommandLine);
         resolved.Should().NotBeNull();
     }
@@ -94,7 +94,7 @@ public class CommandMatcherTest
                 new CommandOverloadDescriptor(commandOption, "foo", CreateCommand("A2", Array.Empty<ICommandParameterDescriptor>()), StringComparer.OrdinalIgnoreCase),
                 new CommandOverloadDescriptor(commandOption, "bar", CreateCommand("A3", Array.Empty<ICommandParameterDescriptor>()), StringComparer.OrdinalIgnoreCase),
             });
-        var parsedCommandLine = new ParsedCommandLine(new CommandOption[] { }, new CommandArgument[] { }, new string[] { });
+        var parsedCommandLine = new ParsedCommandLine(Array.Empty<CommandOption>(), Array.Empty<CommandArgument>(), Array.Empty<string>());
         var resolved = matcher.ResolveOverload(command, parsedCommandLine);
         resolved.Should().NotBeNull();
         resolved.Name.Should().Be("A");
@@ -116,7 +116,7 @@ public class CommandMatcherTest
                 new CommandOverloadDescriptor(commandOption, "foo", CreateCommand("A2", Array.Empty<ICommandParameterDescriptor>()), StringComparer.OrdinalIgnoreCase),
                 new CommandOverloadDescriptor(commandOption, "bar", CreateCommand("A3", Array.Empty<ICommandParameterDescriptor>()), StringComparer.OrdinalIgnoreCase),
             });
-        var parsedCommandLine = new ParsedCommandLine(new CommandOption[] { new CommandOption(commandOption, "foo", 0) }, new CommandArgument[] { }, new string[] { });
+        var parsedCommandLine = new ParsedCommandLine(new CommandOption[] { new CommandOption(commandOption, "foo", 0) }, Array.Empty<CommandArgument>(), Array.Empty<string>());
         var resolved = matcher.ResolveOverload(command, parsedCommandLine);
         resolved.Should().NotBeNull();
         resolved.Name.Should().Be("A2");
@@ -139,7 +139,7 @@ public class CommandMatcherTest
                 new CommandOverloadDescriptor(commandOption0, null, CreateCommand("A2", Array.Empty<ICommandParameterDescriptor>()), StringComparer.OrdinalIgnoreCase),
                 new CommandOverloadDescriptor(commandOption1, null, CreateCommand("A3", Array.Empty<ICommandParameterDescriptor>()), StringComparer.OrdinalIgnoreCase),
             });
-        var parsedCommandLine = new ParsedCommandLine(new CommandOption[] { new CommandOption(commandOption0, "true", 0) }, new CommandArgument[] { }, new string[] { });
+        var parsedCommandLine = new ParsedCommandLine(new CommandOption[] { new CommandOption(commandOption0, "true", 0) }, Array.Empty<CommandArgument>(), Array.Empty<string>());
         var resolved = matcher.ResolveOverload(command, parsedCommandLine);
         resolved.Should().NotBeNull();
         resolved.Name.Should().Be("A2");
@@ -162,7 +162,7 @@ public class CommandMatcherTest
                 new CommandOverloadDescriptor(commandOption0, null, CreateCommand("A2", Array.Empty<ICommandParameterDescriptor>()), StringComparer.OrdinalIgnoreCase),
                 new CommandOverloadDescriptor(commandOption0, null, CreateCommand("A3", Array.Empty<ICommandParameterDescriptor>()), StringComparer.OrdinalIgnoreCase),
             });
-        var parsedCommandLine = new ParsedCommandLine(new CommandOption[] { new CommandOption(commandOption0, "true", 0) }, new CommandArgument[] { }, new string[] { });
+        var parsedCommandLine = new ParsedCommandLine(new CommandOption[] { new CommandOption(commandOption0, "true", 0) }, Array.Empty<CommandArgument>(), Array.Empty<string>());
         Assert.Throws<CoconaException>(() => matcher.ResolveOverload(command, parsedCommandLine));
     }
 }

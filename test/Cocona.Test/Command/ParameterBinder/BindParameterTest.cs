@@ -74,7 +74,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -96,7 +96,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -118,7 +118,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1) };
 
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
@@ -139,7 +139,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1) };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -161,7 +161,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), new CommandArgument("argValue3", 3) };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -185,7 +185,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), new CommandArgument("argValue3", 3), };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -209,7 +209,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), new CommandArgument("argValue3", 3), };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -233,7 +233,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), new CommandArgument("argValue3", 3), };
 
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
@@ -252,8 +252,8 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
-        var commandArguments = new CommandArgument[] { };
+        var commandOptions = Array.Empty<CommandOption>();
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
         ex.Result.Should().Be(ParameterBinderResult.InsufficientArgument);
@@ -271,7 +271,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0) };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -293,7 +293,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1) };
 
 
@@ -316,7 +316,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1) };
 
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
@@ -337,7 +337,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2) };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -361,7 +361,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1) };
 
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
@@ -382,7 +382,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), new CommandArgument("argValue3", 3), };
             
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
@@ -403,7 +403,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), new CommandArgument("argValue3", 3), };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -432,7 +432,7 @@ public class BindParameterTest
             new CommandOption(commandDescriptor.Options[0], "foo", 0),
             new CommandOption(commandDescriptor.Options[1], "true", 1),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
         invokeArgs.Should().NotBeNull();
@@ -453,10 +453,8 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[]
-        {
-        };
-        var commandArguments = new CommandArgument[] { };
+        var commandOptions = Array.Empty<CommandOption>();
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var ex = Assert.Throws<ParameterBinderException>(() =>  CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
         ex.Result.Should().Be(ParameterBinderResult.InsufficientOption);
@@ -479,7 +477,7 @@ public class BindParameterTest
         {
             new CommandOption(commandDescriptor.Options[0], null, 0),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
         ex.Result.Should().Be(ParameterBinderResult.InsufficientOptionValue);
@@ -504,7 +502,7 @@ public class BindParameterTest
         {
             new CommandOption(commandDescriptor.Options[0], "foo", 0),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
         invokeArgs.Should().NotBeNull();
@@ -531,7 +529,7 @@ public class BindParameterTest
             new CommandOption(commandDescriptor.Options[0], "foo", 0),
             new CommandOption(commandDescriptor.Options[1], "true", 1),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
         invokeArgs.Should().NotBeNull();
@@ -558,7 +556,7 @@ public class BindParameterTest
             new CommandOption(commandDescriptor.Options[0], "bar", 1),
             new CommandOption(commandDescriptor.Options[0], "baz", 2),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
         invokeArgs.Should().NotBeNull();
@@ -584,7 +582,7 @@ public class BindParameterTest
             new CommandOption(commandDescriptor.Options[0], "bar", 1),
             new CommandOption(commandDescriptor.Options[0], "baz", 2),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
         invokeArgs.Should().NotBeNull();
@@ -610,7 +608,7 @@ public class BindParameterTest
             new CommandOption(commandDescriptor.Options[0], "bar", 1),
             new CommandOption(commandDescriptor.Options[0], "baz", 2),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
         invokeArgs.Should().NotBeNull();
@@ -634,7 +632,7 @@ public class BindParameterTest
         {
             new CommandOption(commandDescriptor.Options[0], "optValue0", 0),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
         ex.Option.Name.Should().Be("option0");
@@ -653,9 +651,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[]
-        {
-        };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0) };
 
         var ex = Assert.Throws<ParameterBinderException>(() => CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments));
@@ -673,7 +669,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
@@ -699,7 +695,7 @@ public class BindParameterTest
             new CommandOption(commandDescriptor.Options[0], "123", 0),
             new CommandOption(commandDescriptor.Options[1], "456", 1),
         };
-        var commandArguments = new CommandArgument[] { };
+        var commandArguments = Array.Empty<CommandArgument>();
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);
         invokeArgs.Should().NotBeNull();
@@ -720,7 +716,7 @@ public class BindParameterTest
             }
         );
 
-        var commandOptions = new CommandOption[] { };
+        var commandOptions = Array.Empty<CommandOption>();
         var commandArguments = new CommandArgument[] { new CommandArgument("argValue0", 0), new CommandArgument("argValue1", 1), new CommandArgument("argValue2", 2), };
 
         var invokeArgs = CreateCoconaParameterBinder().Bind(commandDescriptor, commandOptions, commandArguments);

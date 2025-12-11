@@ -27,10 +27,10 @@ internal class BootstrapHostBuilder : IHostBuilder
         throw new InvalidOperationException();
     }
 
-    public (HostBuilderContext HostBuilderContext, ConfigurationManager HostConfiguration) Apply(ConfigurationManager configuration, HostBuilder hostBuilder)
+    public (HostBuilderContext HostBuilderContext, ConfigurationManager HostConfiguration) Apply(ConfigurationManager configuration, IHostBuilder hostBuilder)
     {
         // Use default services/configurations for HostBuilder
-        this.ConfigureDefaults(Array.Empty<string>());
+        this.ConfigureDefaults([]);
 
         var hostConfiguration = new ConfigurationManager();
 
@@ -69,7 +69,7 @@ internal class BootstrapHostBuilder : IHostBuilder
     }
 
     // https://github.com/dotnet/runtime/blob/312c66f1fc2f749f56612999cb1adab9ca7fde59/src/libraries/Microsoft.Extensions.Hosting/src/HostBuilder.cs#L198
-    private string ResolveContentRootPath(string contentRootPath, string basePath)
+    private static string ResolveContentRootPath(string contentRootPath, string basePath)
     {
         if (string.IsNullOrEmpty(contentRootPath))
         {
