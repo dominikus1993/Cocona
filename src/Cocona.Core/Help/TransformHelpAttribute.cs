@@ -13,7 +13,7 @@ public abstract class TransformHelpAttribute : Attribute, ICoconaHelpTransformer
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
-public class TransformHelpFactoryAttribute : Attribute, IFilterFactory
+public sealed class TransformHelpFactoryAttribute : Attribute, IFilterFactory
 {
     public Type Transformer { get; }
 

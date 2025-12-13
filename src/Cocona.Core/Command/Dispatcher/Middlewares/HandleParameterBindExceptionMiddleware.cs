@@ -4,7 +4,7 @@ using Cocona.Resources;
 
 namespace Cocona.Command.Dispatcher.Middlewares;
 
-public class HandleParameterBindExceptionMiddleware : CommandDispatcherMiddleware
+public sealed class HandleParameterBindExceptionMiddleware : CommandDispatcherMiddleware
 {
     private readonly ICoconaConsoleProvider _console;
 

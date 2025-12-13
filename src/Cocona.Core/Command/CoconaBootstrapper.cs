@@ -6,7 +6,7 @@ using Cocona.Resources;
 
 namespace Cocona.Command;
 
-public class CoconaBootstrapper : ICoconaBootstrapper
+public sealed class CoconaBootstrapper : ICoconaBootstrapper
 {
     private readonly ICoconaCommandLineArgumentProvider _commandLineArgumentProvider;
     private readonly ICoconaCommandProvider _commandProvider;
@@ -46,23 +46,26 @@ public class CoconaBootstrapper : ICoconaBootstrapper
         {
             if (string.IsNullOrWhiteSpace(cmdNotFoundEx.Command))
             {
-                _console.Error.WriteLine(string.Format(Strings.Dispatcher_Error_CommandNotFound, cmdNotFoundEx.Message));
+                await _console.Error.WriteLineAsync(string.Format(Strings.Dispatcher_Error_CommandNotFound, cmdNotFoundEx.Message));
             }
             else
             {
-                _console.Error.WriteLine(string.Format(Strings.Dispatcher_Error_NotACommand, cmdNotFoundEx.Command));
+                await _console.Error.WriteLineAsync(string.Format(Strings.Dispatcher_Error_NotACommand, cmdNotFoundEx.Command));
             }
 
             var similarCommands = cmdNotFoundEx.ImplementedCommands.All
                 .Where(x => !x.IsHidden && Levenshtein.GetDistance(cmdNotFoundEx.Command.ToLowerInvariant(), x.Name.ToLowerInvariant()) < 3).ToArray();
-            if (similarCommands.Any())
+
+            if (similarCommands is not { Length: > 0 })
             {
-                _console.Error.WriteLine();
-                _console.Error.WriteLine(Strings.Dispatcher_Error_SimilarCommands);
-                foreach (var c in similarCommands)
-                {
-                    _console.Error.WriteLine($"  {c.Name}");
-                }
+                return 1;
+            }
+
+            await _console.Error.WriteLineAsync();
+            await _console.Error.WriteLineAsync(Strings.Dispatcher_Error_SimilarCommands);
+            foreach (var c in similarCommands)
+            {
+                await _console.Error.WriteLineAsync($"  {c.Name}");
             }
 
             return 1;
