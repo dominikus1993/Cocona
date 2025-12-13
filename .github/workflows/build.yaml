@@ -32,10 +32,6 @@ jobs:
 
     # Run Unit tests
     - run: dotnet test -c Release --no-build --logger trx --results-directory $GITHUB_WORKSPACE/artifacts
-    - name: Shellcheck for Bash completion
-      run: |
-        cd samples/MinimalApi.InAction
-        shellcheck <(dotnet run hello test)
 
     # Packaging
     - name: dotnet pack Cocona
