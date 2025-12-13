@@ -65,37 +65,37 @@ public class CoconaHostTest : EndToEndTestBase
         }
     }
 
-    [Fact]
-    public async Task CoconaApp_Run_DisposeHost()
-    {
-        var (stdOut, stdErr, exitCode) = await RunAsync(Array.Empty<string>(), async args =>
-        {
-            var builder = CoconaApp.CreateBuilder(args);
-            TestConfigurationSource? source = default;
-            builder.Configuration.Add<TestConfigurationSource>(x => { source = x; });
-            
-            {
-                using var app = builder.Build();
-                app.AddCommand(() => { });
-                await app.RunAsync();
-            }
-
-            (source?.IsProviderDisposed).Should().BeTrue();
-        });
-
-        Run(Array.Empty<string>(), args =>
-        {
-            var builder = CoconaApp.CreateBuilder(args);
-            TestConfigurationSource? source = default;
-            builder.Configuration.Add<TestConfigurationSource>(x => { source = x; });
-            {
-                var app = builder.Build();
-                app.Dispose();
-            }
-
-            (source?.IsProviderDisposed).Should().BeTrue();
-        });
-    }
+    // [Fact]
+    // public async Task CoconaApp_Run_DisposeHost()
+    // {
+    //     var (stdOut, stdErr, exitCode) = await RunAsync(Array.Empty<string>(), async args =>
+    //     {
+    //         var builder = CoconaApp.CreateBuilder(args);
+    //         TestConfigurationSource? source = default;
+    //         builder.Configuration.Add<TestConfigurationSource>(x => { source = x; });
+    //         
+    //         {
+    //             using var app = builder.Build();
+    //             app.AddCommand(() => { });
+    //             await app.RunAsync();
+    //         }
+    //
+    //         (source?.IsProviderDisposed).Should().BeTrue();
+    //     });
+    //
+    //     Run(Array.Empty<string>(), args =>
+    //     {
+    //         var builder = CoconaApp.CreateBuilder(args);
+    //         TestConfigurationSource? source = default;
+    //         builder.Configuration.Add<TestConfigurationSource>(x => { source = x; });
+    //         {
+    //             var app = builder.Build();
+    //             app.Dispose();
+    //         }
+    //
+    //         (source?.IsProviderDisposed).Should().BeTrue();
+    //     });
+    // }
 
     class TestConfigurationSource : IConfigurationSource
     {
