@@ -50,5 +50,5 @@ jobs:
     - name: Publish NuGet packages to Azure Artifacts
       if: ${{ github.event_name != 'pull_request' }}
       run: |
-        dotnet nuget push --api-key ${{ secrets.GITHUB_TOKEN }} --source "github" $GITHUB_WORKSPACE/artifacts/*.nupkg 
-        dotnet nuget push --api-key ${{ secrets.GITHUB_TOKEN }} --source "github" $GITHUB_WORKSPACE/artifacts/*.snupkg
+        dotnet nuget push --skip-duplicate --api-key ${{ secrets.GITHUB_TOKEN }} --source "github" $GITHUB_WORKSPACE/artifacts/*.nupkg 
+        dotnet nuget push --skip-duplicate --api-key ${{ secrets.GITHUB_TOKEN }} --source "github" $GITHUB_WORKSPACE/artifacts/*.snupkg
