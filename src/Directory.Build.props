@@ -12,8 +12,8 @@
     <Description>Micro-framework for .NET console application. Cocona makes it easy and fast to build console applications on .NET.</Description>
     <Authors>Mayuki Sawatari</Authors>
     <Copyright>Copyright 2020-present Mayuki Sawatari</Copyright>
-    <PackageProjectUrl>https://github.com/mayuki/Cocona</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/mayuki/Cocona</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/dominikus1993/Cocona</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dominikus1993/Cocona</RepositoryUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>CommandLine CLI Framework Console</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
