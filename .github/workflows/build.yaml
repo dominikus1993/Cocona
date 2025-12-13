@@ -10,34 +10,23 @@ on:
       - synchronize
 
 env:
-  AZURE_ARTIFACTS_FEED_URL: https://pkgs.dev.azure.com/misuzilla/Cocona/_packaging/Cocona-Canary/nuget/v3/index.json
+  AZURE_ARTIFACTS_FEED_URL: https://nuget.pkg.github.com/dominikus1993/index.json
   DOTNET_NOLOGO: true
+  USERNAME: dominikus1993
 
 jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
-    # Load secrets from 1Password
-    - uses: 1password/load-secrets-action@v2
-      id: op-load-secret
-      with:
-        export-env: false
-      env:
-        OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN_PUBLIC }}
-        NUGET_AUTH_TOKEN: "op://GitHub Actions - Public/NuGet - Azure Artifacts/credential"
-
     - uses: actions/checkout@v4
     - uses: actions/setup-dotnet@v4
       with:
-        source-url: ${{ env.AZURE_ARTIFACTS_FEED_URL }}
         dotnet-version: |
-          3.1.x
-          6.0.x
           8.0.x
-      env:
-        NUGET_AUTH_TOKEN: ${{ steps.op-load-secret.outputs.NUGET_AUTH_TOKEN }}
+          10.0.x
 
     # Build
+    - run: dotnet nuget add source --username $USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ AZURE_ARTIFACTS_FEED_URL }}
     - run: dotnet restore
     - run: dotnet build -c Release
 
@@ -65,5 +54,5 @@ jobs:
     - name: Publish NuGet packages to Azure Artifacts
       if: ${{ github.event_name != 'pull_request' }}
       run: |
-        dotnet nuget push --api-key AzureArtifacts $GITHUB_WORKSPACE/artifacts/*.nupkg
-        dotnet nuget push --api-key AzureArtifacts $GITHUB_WORKSPACE/artifacts/*.snupkg
+        dotnet nuget push --api-key ${{ secrets.GITHUB_TOKEN }} --source "github" $GITHUB_WORKSPACE/artifacts/*.nupkg 
+        dotnet nuget push --api-key ${{ secrets.GITHUB_TOKEN }} --source "github" $GITHUB_WORKSPACE/artifacts/*.snupkg
