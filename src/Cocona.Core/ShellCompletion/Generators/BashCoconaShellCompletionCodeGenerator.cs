@@ -8,20 +8,20 @@ namespace Cocona.ShellCompletion.Generators;
 /// <summary>
 /// Generates the shell completion code for Bash.
 /// </summary>
-public class BashCoconaShellCompletionCodeGenerator : ICoconaShellCompletionCodeGenerator
+public sealed partial class BashCoconaShellCompletionCodeGenerator : ICoconaShellCompletionCodeGenerator
 {
     private readonly string _appName;
     private readonly string _appCommandName;
     private readonly ICoconaCompletionCandidates _completionCandidates;
 
-    public IReadOnlyList<string> Targets { get; } = new[] {"bash"};
+    public IReadOnlyList<string> Targets { get; } = ["bash"];
 
     public BashCoconaShellCompletionCodeGenerator(
         ICoconaApplicationMetadataProvider applicationMetadataProvider,
         ICoconaCompletionCandidates completionCandidates
     )
     {
-        _appName = Regex.Replace(applicationMetadataProvider.GetProductName(), "[^a-zA-Z0-9_]", "__");
+        _appName = LettersAndNumbersRegex().Replace(applicationMetadataProvider.GetProductName(), "__");
         _appCommandName = applicationMetadataProvider.GetExecutableName();
         _completionCandidates = completionCandidates;
     }
@@ -35,10 +35,8 @@ public class BashCoconaShellCompletionCodeGenerator : ICoconaShellCompletionCode
         WriteRootCommandDefinition(writer, commandCollection);
 
         // Write common.sh
-        using (var reader = new StreamReader(typeof(BashCoconaShellCompletionCodeGenerator).Assembly.GetManifestResourceStream("Cocona.ShellCompletion.Generators.Resources.bash_common.sh")!))
-        {
-            writer.Write(reader.ReadToEnd().Replace("APPCOMMANDNAMEPLACEHOLDER", _appCommandName).Replace("APPNAMEPLACEHOLDER", _appName));
-        }
+        using var reader = new StreamReader(typeof(BashCoconaShellCompletionCodeGenerator).Assembly.GetManifestResourceStream("Cocona.ShellCompletion.Generators.Resources.bash_common.sh")!);
+        writer.Write(reader.ReadToEnd().Replace("APPCOMMANDNAMEPLACEHOLDER", _appCommandName).Replace("APPNAMEPLACEHOLDER", _appName));
     }
 
     public void GenerateOnTheFlyCandidates(TextWriter writer, IReadOnlyList<CompletionCandidateValue> values)
@@ -72,7 +70,7 @@ public class BashCoconaShellCompletionCodeGenerator : ICoconaShellCompletionCode
 
     private void WriteCommandDefinition(TextWriter writer, string commandName, CommandDescriptor command)
     {
-        var subCommands = command.SubCommands?.All.Where(x => !x.IsHidden && !x.IsPrimaryCommand).ToArray() ?? Array.Empty<CommandDescriptor>();
+        var subCommands = command.SubCommands?.All.Where(x => x is { IsHidden: false, IsPrimaryCommand: false }).ToArray() ?? Array.Empty<CommandDescriptor>();
 
         writer.WriteLine($"__cocona_{_appName}_commands_{commandName}() {{");
         foreach (var subCommand in subCommands)
@@ -103,43 +101,40 @@ public class BashCoconaShellCompletionCodeGenerator : ICoconaShellCompletionCode
             writer.WriteLine($"    __cocona_{_appName}_completion_define_argument \"{arg.Name}\" \"{FromArgumentToCandidatesType(arg)}\"");
         }
 
+        return;
+
         string FromOptionToCandidatesType(ICommandOptionDescriptor option)
         {
-            if (option is CommandOptionDescriptor commandOption)
-            {
-                if (commandOption.OptionType == typeof(bool))
-                {
-                    return "bool";
-                }
-                else
-                {
-                    var candidates = _completionCandidates.GetStaticCandidatesFromOption(commandOption);
-                    if (candidates.IsOnTheFly)
-                    {
-                        return $"onthefly:{option.Name}";
-                    }
-                    else
-                    {
-                        return candidates.Result!.ResultType switch
-                        {
-                            CompletionCandidateResultType.Default
-                                => "default",
-                            CompletionCandidateResultType.File
-                                => "file",
-                            CompletionCandidateResultType.Directory
-                                => "directory",
-                            CompletionCandidateResultType.Keywords
-                                => $"keywords:{string.Join(":", candidates.Result!.Values.Select(x => x.Value))}",
-                            _
-                                => "default",
-                        };
-                    }
-                }
-            }
-            else
+            if (option is not CommandOptionDescriptor commandOption)
             {
                 return "default";
             }
+
+            if (commandOption.OptionType == typeof(bool))
+            {
+                return "bool";
+            }
+
+            var candidates = _completionCandidates.GetStaticCandidatesFromOption(commandOption);
+            if (candidates.IsOnTheFly)
+            {
+                return $"onthefly:{option.Name}";
+            }
+
+            return candidates.Result!.ResultType switch
+            {
+                CompletionCandidateResultType.Default
+                    => "default",
+                CompletionCandidateResultType.File
+                    => "file",
+                CompletionCandidateResultType.Directory
+                    => "directory",
+                CompletionCandidateResultType.Keywords
+                    => $"keywords:{string.Join(":", candidates.Result!.Values.Select(x => x.Value))}",
+                _
+                    => "default",
+            };
+
         }
 
         string FromArgumentToCandidatesType(CommandArgumentDescriptor argument)
@@ -167,4 +162,7 @@ public class BashCoconaShellCompletionCodeGenerator : ICoconaShellCompletionCode
             }
         }
     }
+
+    [GeneratedRegex("[^a-zA-Z0-9_]")]
+    private static partial Regex LettersAndNumbersRegex();
 }
