@@ -9,7 +9,7 @@ public sealed class StaticCompletionCandidatesProvider : ICoconaCompletionStatic
             CompletionCandidateType.Default => CompletionCandidateResult.Default,
             CompletionCandidateType.Directory => CompletionCandidateResult.Directory,
             CompletionCandidateType.File => CompletionCandidateResult.File,
-            _ => throw new NotSupportedException(),
+            _ => throw new NotSupportedException($"CandidateType {metadata.CandidateType}  is not supported"),
         };
     }
 }
