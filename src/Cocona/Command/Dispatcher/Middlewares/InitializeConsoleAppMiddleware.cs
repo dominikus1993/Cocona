@@ -16,14 +16,16 @@ public sealed class InitializeConsoleAppMiddleware : CommandDispatcherMiddleware
 
     public override ValueTask<int> DispatchAsync(CommandDispatchContext ctx)
     {
-        if (_appContext.Current != null)
+        if (_appContext.Current == null)
         {
-            _appContext.Current.Features.Set<ILogger>(_loggerFactory.CreateLogger(ctx.Command.CommandType));
+            return Next(ctx);
+        }
 
-            if (ctx.CommandTarget is CoconaConsoleAppBase consoleApp)
-            {
-                consoleApp.Context = new CoconaConsoleAppContext(_appContext.Current);
-            }
+        _appContext.Current.Features.Set<ILogger>(_loggerFactory.CreateLogger(ctx.Command.CommandType));
+
+        if (ctx.CommandTarget is CoconaConsoleAppBase consoleApp)
+        {
+            consoleApp.Context = new CoconaConsoleAppContext(_appContext.Current);
         }
 
         return Next(ctx);
